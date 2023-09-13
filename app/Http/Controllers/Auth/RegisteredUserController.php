@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\Http\Requests\RegisterFormRequestValidation;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,24 +32,18 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(RegisterFormRequestValidation $request)
     {
-        $request->validate([
-            'username' => ['required', 'string', 'max:255'],
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        $validated = $request->validated();
 
         $user = new User();
-        $user->username = $request->username;
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
+        $user->username = $validated['username'];
+        $user->first_name = $validated['first_name'];
+        $user->last_name = $validated['last_name'];
         $user->is_active = true;
         $user->role_id = 1;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $user->email = $validated['email'];
+        $user->password = Hash::make($validated['password']);
 
         $user->save();
 
