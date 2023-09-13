@@ -44,6 +44,12 @@
                         <p class="content">{{ __("Ticket") }}</p>
                     </div>
                 </a>
+                <a href="{{ route('screenings.index') }}">
+                    <div class="flex gap-3 items-center max-w-full px-8 py-5 hover:bg-slate-300 hover:text-indigo-500 transition-all ease-linear cursor-pointer text-lg">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <p class="content">{{ __("Screening") }}</p>
+                    </div>
+                </a>
             </div>
             <div class="grow px-5">
                 @include('layouts.navigation')
