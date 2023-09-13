@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -10,7 +11,7 @@ class Screening extends Model
 {
     use HasFactory;
 
-    protected $table = 'films';
+    protected $table = 'screenings';
 
     protected $guarded = [
         'id',
