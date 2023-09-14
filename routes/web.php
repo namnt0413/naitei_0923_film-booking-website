@@ -22,7 +22,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::prefix('/admin')->group(function () {
+Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('screenings', ScreeningController::class);
 });
 
