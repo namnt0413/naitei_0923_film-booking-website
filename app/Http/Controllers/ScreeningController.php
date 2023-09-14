@@ -7,7 +7,6 @@ use App\Http\Requests\Screening\UpdateRequest;
 use App\Models\Film;
 use App\Models\Room;
 use App\Models\Screening;
-use Illuminate\Support\Facades\Validator;
 
 class ScreeningController extends Controller
 {
@@ -18,7 +17,7 @@ class ScreeningController extends Controller
      */
     public function index()
     {
-        $screenings = Screening::with('film:title')->paginate(config('app.items_per_page'));
+        $screenings = Screening::with('film:id,title')->paginate(config('app.items_per_page'));
 
         return view('screenings.index', compact('screenings'));
     }
@@ -46,7 +45,7 @@ class ScreeningController extends Controller
     {
         $validated = $request->validated();
     
-        if (checkOverlapped('screenings', $request->input('start_time'), $request->input('end_time'))) {
+        if (checkOverlapped('screenings', $request->input('start_time'), $request->input('end_time'), null)) {
             return redirect()->back()->with('error', trans('Overlapped time'));
         }
     
@@ -88,8 +87,8 @@ class ScreeningController extends Controller
     {
         $validated = $request->validated();
 
-        if (checkOverlapped('screenings', $request->input('start_time'), $request->input('end_time'))) {
-            return redirect()->back()->with('errors', [trans('Overlapped time')]);
+        if (checkOverlapped('screenings', $validated['start_time'], $validated['end_time'], $screening->id)) {
+            return redirect()->back()->with('error', trans('Overlapped time'));
         }
 
         $screening->start_time = $validated['start_time'];
