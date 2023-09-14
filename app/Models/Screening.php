@@ -10,7 +10,7 @@ class Screening extends Model
 {
     use HasFactory;
 
-    protected $table = 'films';
+    protected $table = 'screenings';
 
     protected $guarded = [
         'id',
