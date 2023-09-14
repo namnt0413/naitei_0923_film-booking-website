@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ScreeningController;
+use App\Http\Controllers\SeatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +26,8 @@ Route::get('/dashboard', function () {
 
 Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('screenings', ScreeningController::class);
+    Route::resource('rooms', RoomController::class);
+    Route::resource('seats', SeatController::class);
 });
 
 require __DIR__.'/auth.php';
