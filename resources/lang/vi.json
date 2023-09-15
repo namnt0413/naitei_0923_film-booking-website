@@ -130,5 +130,19 @@
     "Total tickets": "Tổng số vé",
     "Sum price": "Tổng tiền",
     "Most popular film": "Phim nổi nhất",
-    "Most booking user": "Người dùng đặt nhiều vé nhất"
+    "Most booking user": "Người dùng đặt nhiều vé nhất",
+    "List films": "Danh sách phim",
+    "Create film": "Tạo phim mới",
+    "Edit film": "Chỉnh sửa phim",
+    "Detail film": "Chi tiết phim",
+    "Title": "Tên phim",
+    "Avatar": "Ảnh bìa",
+    "Director": "Đạo diễn",
+    "Duration": "Thời lượng",
+    "Description": "Mô tả phim",
+    "Trailer": "Trailer",
+    "Release date": "Khởi chiếu",
+    "Genres": "Thể loại",
+    "Images gallery": "Thư viện ảnh",
+    "minitues": "phút"
 }

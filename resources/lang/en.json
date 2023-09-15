@@ -90,5 +90,19 @@
     "Total tickets": "Total of tickets",
     "Sum price": "Sum of prices",
     "Most popular film": "Most popular film",
-    "Most booking user": "Most booking user"
+    "Most booking user": "Most booking user",
+    "List films": "List of films",
+    "Create film": "Create a new film",
+    "Edit film": "Edit a film",
+    "Title": "Film title",
+    "Avatar": "Film avatar",
+    "Director": "Director",
+    "Duration": "Duration",
+    "Description": "Description of film",
+    "Trailer": "Trailer",
+    "Release date": "Release date",
+    "Genres": "Genres",
+    "Images gallery": "Images gallery",
+    "Detail film": "Detail of film",
+    "minitues": "minitues"
 }
