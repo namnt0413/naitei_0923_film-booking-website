@@ -77,5 +77,13 @@
     "Overlapped time": "Time is overlapped",
     "Successfully created": "Create successfully",
     "Successfully updated": "Update successfully",
-    "Successfully deleted": "Delete successfully"
+    "Successfully deleted": "Delete successfully",
+    "List seats": "List of seats",
+    "Create seat": "Create new seat",
+    "Edit seat": "Edit a seat",
+    "Detail seat": "Detail of seat",
+    "List rooms": "List of rooms",
+    "Create room": "Create new room",
+    "Edit room": "Edit a room",
+    "Detail room": "Detail of room"
 }

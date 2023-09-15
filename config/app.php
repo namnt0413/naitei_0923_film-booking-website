@@ -2,6 +2,8 @@
 
 return [
 
+    'transaction_request' => 5,
+
     'items_per_page' => 10,
 
     /*

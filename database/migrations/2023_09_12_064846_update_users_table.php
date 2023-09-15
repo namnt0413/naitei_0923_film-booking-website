@@ -35,7 +35,7 @@ class UpdateUsersTable extends Migration
             $table->dropColumn('first_name');
             $table->dropColumn('last_name');
             $table->dropColumn('is_active');
-            $table->dropColumm('role_id');
+            $table->dropColumn('role_id');
             $table->string('name');
         });
     }

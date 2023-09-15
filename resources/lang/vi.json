@@ -117,5 +117,13 @@
     "End time": "Thời gian kết thúc",
     "Back": "Quay lại",
     "Total": "Tổng",
-    "Remain": "Còn lại"
+    "Remain": "Còn lại",
+    "List seats": "Danh sách các chỗ ngồi",
+    "Create seat": "Thêm mới chỗ ngồi",
+    "Edit seat": "Chỉnh sửa chỗ ngồi",
+    "Detail seat": "Chi tiết chỗ ngồi",
+    "List rooms": "Danh sách các phòng",
+    "Create room": "Thêm mới phòng",
+    "Edit room": "Chỉnh sửa phòng",
+    "Detail room": "Chi tiết phòng"
 }
