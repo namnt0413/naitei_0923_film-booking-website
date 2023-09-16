@@ -44,7 +44,7 @@ class RoomController extends Controller
         $validated = $request->validated();
         Room::create($validated);
 
-        return redirect()->back()->with('success', trans('Successfully created'));
+        return redirect()->route('rooms.index')->with('success', trans('Successfully created'));
     }
 
     /**
@@ -82,7 +82,7 @@ class RoomController extends Controller
         $room->name = $validated['name'];
         $room->save();
 
-        return redirect()->back()->with('success', trans('Successfully updated'));
+        return redirect()->route('rooms.index')->with('success', trans('Successfully updated'));
     }
 
     /**

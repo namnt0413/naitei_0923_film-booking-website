@@ -13,6 +13,7 @@
         <!-- Scripts -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/jquery.js') }}"></script>
     </head>
     <body class="font-sans antialiased">
         <div class="bg-gray-100 flex">
@@ -32,7 +33,7 @@
                         <p class="content">{{ __("Film") }}</p>
                     </div>
                 </a>
-                <a href="">
+                <a href="{{ route('rooms.index') }}">
                     <div class="flex gap-3 items-center max-w-full px-8 py-5 hover:bg-slate-300 hover:text-indigo-500 transition-all ease-linear cursor-pointer text-lg">
                         <i class="fa-solid fa-door-open"></i>
                         <p class="content">{{ __("Room") }}</p>
@@ -48,6 +49,12 @@
                     <div class="flex gap-3 items-center max-w-full px-8 py-5 hover:bg-slate-300 hover:text-indigo-500 transition-all ease-linear cursor-pointer text-lg">
                         <i class="fa-solid fa-calendar-days"></i>
                         <p class="content">{{ __("Screening") }}</p>
+                    </div>
+                </a>
+                <a href="{{ route('seats.index') }}">
+                    <div class="flex gap-3 items-center max-w-full px-8 py-5 hover:bg-slate-300 hover:text-indigo-500 transition-all ease-linear cursor-pointer text-lg">
+                        <i class="fas fa-chair"></i>
+                        <p class="content">{{ __("Seat") }}</p>
                     </div>
                 </a>
             </div>

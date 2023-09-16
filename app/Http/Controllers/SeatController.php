@@ -17,7 +17,7 @@ class SeatController extends Controller
      */
     public function index()
     {
-        $seats = Seat::with('room:id, name')->orderBy('room_id')->paginate(config('app.items_per_page'));
+        $seats = Seat::with('room:id,name')->orderBy('room_id')->paginate(config('app.items_per_page'));
 
         return view('seats.index', compact('seats'));
     }
@@ -31,7 +31,7 @@ class SeatController extends Controller
     {
         $rooms = Room::all(['id', 'name']);
 
-        return view('seats.create'. compact('rooms'));
+        return view('seats.create', compact('rooms'));
     }
 
     /**
@@ -43,9 +43,14 @@ class SeatController extends Controller
     public function store(CreateRequest $request)
     {
         $validated = $request->validated();
+
+        if (checkExistNumberSeat('seats', $validated['room_id'], $validated['number'])) {
+            return redirect()->back()->with('error', trans('Existed Number Seat'));
+        }
+
         Seat::create($validated);
 
-        return redirect()->back()->with('success', trans('Successfully created'));
+        return redirect()->route('seats.index')->with('success', trans('Successfully created'));
     }
 
     /**
@@ -84,7 +89,7 @@ class SeatController extends Controller
         $seat->type = $validated['type'];
         $seat->save();
 
-        return redirect()->back()->with('success', trans('Successfully updated'));
+        return redirect()->route('seats.index')->with('success', trans('Successfully updated'));
     }
 
     /**
@@ -99,7 +104,7 @@ class SeatController extends Controller
             $seat->tickets()->delete();
             $seat->delete();
         }, config('app.transaction_request'));
-
+        
         return redirect()->route('rooms.index')->with('success', trans('Successfully deleted'));
     }
 }

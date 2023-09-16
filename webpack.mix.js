@@ -14,4 +14,5 @@ const mix = require("laravel-mix");
 mix.js("resources/js/app.js", "public/js")
     .js("resources/js/*.js", "public/js")
     .sass("resources/sass/app.scss", "public/css")
-    .postCss("resources/css/app.css", "public/css", [require("tailwindcss")]);
+    .postCss("resources/css/app.css", "public/css", [require("tailwindcss")])
+    .scripts(['node_modules/jquery/dist/jquery.js'], 'public/js/jquery.js');

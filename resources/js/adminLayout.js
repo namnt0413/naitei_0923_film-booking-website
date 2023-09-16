@@ -8,3 +8,16 @@ sidebarToggle.addEventListener("click", function () {
     }
     sidebar.classList.toggle("notext");
 });
+
+$(document).ready(function() {
+    $(document).click(function(event) {
+        if (!$(event.target).closest('.dropdown-container').length) {
+            $('.dropdown-action').hide();
+        }
+    });
+
+    $('.button-action').click(function() {
+        $('.dropdown-action').not($(this).siblings('.dropdown-action')).hide();
+        $(this).siblings('.dropdown-action').toggle();
+    });
+});
