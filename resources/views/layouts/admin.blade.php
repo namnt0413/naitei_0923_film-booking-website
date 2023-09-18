@@ -12,7 +12,7 @@
 
         <!-- Scripts -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <script src="{{ asset('js/app.js') }}"></script>        
+        <script src="{{ asset('js/app.js') }}"></script>
     </head>
     <body class="font-sans antialiased">
         <div class="bg-gray-100 flex">
@@ -26,7 +26,7 @@
                         <h2 class="content">{{ __("Admin page") }}</h2>
                     </div>
                 </a>
-                <a href="">
+                <a href="{{ route('films.index') }}">
                     <div class="flex gap-3 items-center max-w-full px-8 py-5 hover:bg-slate-300 hover:text-indigo-500 transition-all ease-linear cursor-pointer text-lg">
                         <i class="fa-solid fa-film"></i>
                         <p class="content">{{ __("Film") }}</p>
@@ -34,7 +34,7 @@
                 </a>
                 <a href="">
                     <div class="flex gap-3 items-center max-w-full px-8 py-5 hover:bg-slate-300 hover:text-indigo-500 transition-all ease-linear cursor-pointer text-lg">
-                        <i class="fa-solid fa-door-open"></i>    
+                        <i class="fa-solid fa-door-open"></i>
                         <p class="content">{{ __("Room") }}</p>
                     </div>
                 </a>
@@ -66,11 +66,11 @@
                     {{ $slot }}
                 </main>
             </div>
-            
+
         </div>
 
         <script src="{{ asset('js/adminLayout.js') }}">
-            
+
         </script>
     </body>
 </html>

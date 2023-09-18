@@ -21,7 +21,7 @@ class Film extends Model
 
     public function genres(): BelongsToMany
     {
-        return $this->belongsToMany(Genres::class);
+        return $this->belongsToMany(Genre::class);
     }
 
     public function medias(): HasMany

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\FilmController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\SeatController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,7 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('rooms', RoomController::class);
     Route::resource('seats', SeatController::class);
     Route::get('/dashboard', [DashboardController::class, '__invoke'])->name('dashboard');
+    Route::resource('films', FilmController::class);
 });
 
 require __DIR__.'/auth.php';
