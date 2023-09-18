@@ -104,5 +104,18 @@
     "Genres": "Genres",
     "Images gallery": "Images gallery",
     "Detail film": "Detail of film",
-    "minitues": "minitues"
+    "minitues": "minitues",
+    "Room name": "Room name",
+    "Action": "Action",
+    "Seat": "Seat",
+    "Seat number": "Seat number",
+    "Price": "Price",
+    "Type": "Type",
+    "Normal": "Normal",
+    "normal": "normal",
+    "Couple": "Couple",
+    "couple": "couple",
+    "Vip": "Vip",
+    "vip": "vip",
+    "Movie Screen": "Movie Screen"
 }

@@ -144,5 +144,17 @@
     "Release date": "Khởi chiếu",
     "Genres": "Thể loại",
     "Images gallery": "Thư viện ảnh",
-    "minitues": "phút"
+    "minitues": "phút",
+    "Room name": "Tên phòng",
+    "Seat": "Ghế ngồi",
+    "Seat number": "Số ghế",
+    "Price": "Giá",
+    "Type": "Loại",
+    "Normal": "Thường",
+    "normal": "thường",
+    "Couple": "Đôi",
+    "couple": "đôi",
+    "Vip": "Cao cấp",
+    "vip": "cao cấp",
+    "Movie Screen": "Màn Hình"
 }
