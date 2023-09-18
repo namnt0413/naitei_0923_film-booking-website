@@ -85,5 +85,10 @@
     "List rooms": "List of rooms",
     "Create room": "Create new room",
     "Edit room": "Edit a room",
-    "Detail room": "Detail of room"
+    "Detail room": "Detail of room",
+    "Total films": "Total of films",
+    "Total tickets": "Total of tickets",
+    "Sum price": "Sum of prices",
+    "Most popular film": "Most popular film",
+    "Most booking user": "Most booking user"
 }

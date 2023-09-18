@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\SeatController;
@@ -20,14 +21,12 @@ Route::get('/', function () {
     return view('test');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('screenings', ScreeningController::class);
     Route::resource('rooms', RoomController::class);
     Route::resource('seats', SeatController::class);
+    Route::get('/dashboard', [DashboardController::class, '__invoke'])->name('dashboard');
 });
 
 require __DIR__.'/auth.php';

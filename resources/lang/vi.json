@@ -125,5 +125,10 @@
     "List rooms": "Danh sách các phòng",
     "Create room": "Thêm mới phòng",
     "Edit room": "Chỉnh sửa phòng",
-    "Detail room": "Chi tiết phòng"
+    "Detail room": "Chi tiết phòng",
+    "Total films": "Tổng số film",
+    "Total tickets": "Tổng số vé",
+    "Sum price": "Tổng tiền",
+    "Most popular film": "Phim nổi nhất",
+    "Most booking user": "Người dùng đặt nhiều vé nhất"
 }
