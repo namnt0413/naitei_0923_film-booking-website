@@ -6,7 +6,9 @@ use App\Http\Requests\Seat\CreateRequest;
 use App\Http\Requests\Seat\UpdateRequest;
 use App\Models\Room;
 use App\Models\Seat;
+use App\Models\Ticket;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
 
 class SeatController extends Controller
 {
@@ -106,5 +108,19 @@ class SeatController extends Controller
         }, config('app.transaction_request'));
         
         return redirect()->route('rooms.index')->with('success', trans('Successfully deleted'));
+    }
+
+    public function searchByRoom(Request $request, Room $room)
+    {
+        $seatIds = $room->seats()->pluck('id')->all();
+        $screeningIds = $room->screenings()->pluck('id')->all();
+        $cannotBookingSeatIds = Ticket::whereIn('seat_id', $seatIds)
+            ->whereIn('screening_id', $screeningIds)
+            ->pluck('seat_id')
+            ->all();
+        $seats = Seat::where('room_id', $room->id)
+            ->whereNotIn('id', $cannotBookingSeatIds)
+            ->get();
+        return response()->json($seats);
     }
 }

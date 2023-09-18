@@ -7,6 +7,7 @@ use App\Http\Requests\Screening\UpdateRequest;
 use App\Models\Film;
 use App\Models\Room;
 use App\Models\Screening;
+use Illuminate\Support\Facades\Request;
 
 class ScreeningController extends Controller
 {
@@ -110,5 +111,10 @@ class ScreeningController extends Controller
         $screening->delete();
 
         return redirect()->route('screenings.index')->with('success', trans('Successfully deleted'));
+    }
+
+    public function searchByRoom(Request $request, Room $room)
+    {
+        return response()->json($room->screenings);
     }
 }
