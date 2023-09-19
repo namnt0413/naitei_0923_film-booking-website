@@ -39,7 +39,7 @@
                         <p class="content">{{ __("Room") }}</p>
                     </div>
                 </a>
-                <a href="">
+                <a href="{{ route('tickets.index') }}">
                     <div class="flex gap-3 items-center max-w-full px-8 py-5 hover:bg-slate-300 hover:text-indigo-500 transition-all ease-linear cursor-pointer text-lg">
                         <i class="fa-solid fa-ticket"></i>
                         <p class="content">{{ __("Ticket") }}</p>

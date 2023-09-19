@@ -23,7 +23,7 @@
             <p>{{ __($seat->type) }}</p>
         </div>
         <div class="flex gap-3">
-            <a href="{{ route('seats.edit', ['seat' => 1]) }}">
+            <a href="{{ route('seats.edit', ['seat' => $seat]) }}">
                 <button class="w-24 h-12 rounded-md bg-blue-600 text-white hover:bg-blue-300 hover:text-gray-600 transition-all">
                     {{ __("Edit") }}
                 </button>
