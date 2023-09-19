@@ -1,9 +1,8 @@
 <?php
 
 return [
-
+    'price' => 5000,
     'transaction_request' => 5,
-
     'items_per_page' => 10,
 
     /*
