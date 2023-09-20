@@ -67,6 +67,8 @@
                         {{ $header }}
                     </div>
                 </header>
+                
+                <x-notification :errors="$errors" />
 
                 <!-- Page Content -->
                 <main>
