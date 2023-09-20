@@ -30,10 +30,11 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('seats', SeatController::class);
     Route::get('/dashboard', [DashboardController::class, '__invoke'])->name('dashboard');
     Route::resource('films', FilmController::class);
+    Route::resource('tickets', TicketController::class)->except(['store', 'destroy']);
 });
 
-Route::resource('tickets', TicketController::class);
-
+Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store');
+Route::delete('/tickets/{ticket}', [TicketController::class, 'destroy'])->name('tickets.destroy');
 Route::get('/films/{film}/booking', [TicketController::class, 'renderBooking']);
 Route::get('/seats/{room}/search', [SeatController::class, 'searchByRoom']);
 Route::get('/screenings/{room}/search', [ScreeningController::class, 'searchByRoom']);

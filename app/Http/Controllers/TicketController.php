@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Ticket\CreateRequest;
+use App\Http\Requests\Ticket\UpdateRequest;
 use App\Models\Film;
 use App\Models\Screening;
 use App\Models\Seat;
@@ -13,7 +14,6 @@ use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
 {
-
     public function renderBooking(Request $request, Film $film)
     {
         $mediaByType = [
@@ -47,7 +47,9 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        $tickets = Ticket::with(['film', 'screening', 'user'])->paginate(config('app.items_per_page'));
+
+        return view('tickets.index', compact('tickets'));
     }
 
     /**
@@ -91,7 +93,7 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        //
+        return view('tickets.show', compact('ticket'));
     }
 
     /**
@@ -102,7 +104,7 @@ class TicketController extends Controller
      */
     public function edit(Ticket $ticket)
     {
-        //
+        return view('tickets.edit', compact('ticket'));
     }
 
     /**
@@ -112,9 +114,13 @@ class TicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ticket $ticket)
+    public function update(UpdateRequest $request, Ticket $ticket)
     {
-        //
+        $validated = $request->validated();
+        $ticket->price = $validated['price'];
+        $ticket->save();
+
+        return redirect()->back()->with('success', trans('Successfully updated'));
     }
 
     /**
@@ -125,6 +131,8 @@ class TicketController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
-        //
+        $ticket->delete();
+
+        return redirect()->back()->with('success', trans('Successfully deleted'));
     }
 }

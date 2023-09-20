@@ -118,5 +118,10 @@
     "Vip": "Vip",
     "vip": "vip",
     "Movie Screen": "Movie Screen",
-    "Booking": "Booking"
+    "Booking": "Booking",
+    "List tickets": "List of tickets",
+    "Create ticket": "Create new ticket",
+    "Edit ticket": "Edit a ticket",
+    "Detail ticket": "Detail of a ticket",
+    "Time": "Time"
 }
