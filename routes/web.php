@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\ScreeningController;
@@ -24,6 +25,9 @@ Route::get('/', function () {
     return view('test');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('index');
+});
 
 Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('screenings', ScreeningController::class);
