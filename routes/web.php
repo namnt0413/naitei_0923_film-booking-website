@@ -43,6 +43,8 @@ Route::delete('/tickets/{ticket}', [TicketController::class, 'destroy'])->name('
 Route::get('/films/{film}/booking', [TicketController::class, 'renderBooking']);
 Route::get('/seats/{room}/search', [SeatController::class, 'searchByRoom']);
 Route::get('/screenings/{room}/search', [ScreeningController::class, 'searchByRoom']);
+Route::get('/tickets/list', [TicketController::class, 'bookedTickets'])->name('tickets.booked');
+Route::get('/tickets/list/{ticket}', [TicketController::class, 'detailTicket'])->name('tickets.detail');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

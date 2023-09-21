@@ -27,7 +27,7 @@ class TicketController extends Controller
         $film->avatar = $mediaByType['avatar'];
         $film->image = $mediaByType['image'];
         $film->trailer = $mediaByType['trailer'];
-        
+
         $rooms = [];
         $tmpScreenings = Film::with('screenings.room')->find($film->id)->screenings;
         foreach ($tmpScreenings as $screeing) {
@@ -38,6 +38,21 @@ class TicketController extends Controller
             "film" => $film,
             "rooms" => $rooms,
         ]);
+    }
+
+    // create function get all booked tickets
+    public function bookedTickets(Request $request)
+    {
+        $tickets = Ticket::with(['film', 'screening', 'seat'])
+            ->where('user_id', Auth::user()->id)
+            ->paginate(config('app.items_pre_page'));
+
+        return view('tickets.booked', compact('tickets'));
+    }
+
+    public function detailTicket(Ticket $ticket)
+    {
+        return view('tickets.detail', compact('ticket'));
     }
 
     /**
@@ -133,6 +148,6 @@ class TicketController extends Controller
     {
         $ticket->delete();
 
-        return redirect()->back()->with('success', trans('Successfully deleted'));
+        return redirect()->route('tickets.booked')->with('success', trans('Successfully deleted'));
     }
 }
