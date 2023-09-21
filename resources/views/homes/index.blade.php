@@ -81,38 +81,20 @@
                         </div>
                     </div>
                 </nav>
-                <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                    <a href="#" class="film">
-                        <img class="hover:grow hover:shadow-lg bg-cover m-auto h-auto w-full p-2" src="https://cdn.galaxycine.vn/media/2023/8/24/shin-2023-1_1692889270625.jpg">
-                    </a>
-                    <div class="pt-3 flex items-center justify-between">
-                        <p class="p-2">3DCG! SHIN – CẬU BÉ BÚT CHÌ: ĐẠI CHIẾN SIÊU NĂNG LỰC ~ SUSHI BAY</p>
+                @foreach ($newFilms as $newFilm)
+                    <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+                        <a href="#" class="film">
+                            @foreach ($newFilm->medias as $media)
+                                @if($media->type == "avatar")
+                                    <img class="hover:grow hover:shadow-lg bg-cover m-auto h-auto w-full p-2" src="{{ $media->link }}"/>
+                                @endif
+                            @endforeach
+                        </a>
+                        <div class="pt-3 flex items-center justify-between">
+                            <p class="p-2">{{ $newFilm->title }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                    <a href="#" class="film">
-                        <img class="hover:grow hover:shadow-lg bg-cover m-auto h-auto w-full p-2" src="https://cdn.galaxycine.vn/media/2023/8/24/shin-2023-1_1692889270625.jpg">
-                    </a>
-                    <div class="pt-3 flex items-center justify-between">
-                        <p class="p-2">3DCG! SHIN – CẬU BÉ BÚT CHÌ: ĐẠI CHIẾN SIÊU NĂNG LỰC ~ SUSHI BAY</p>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                    <a href="#" class="film">
-                        <img class="hover:grow hover:shadow-lg bg-cover m-auto h-auto w-full p-2" src="https://cdn.galaxycine.vn/media/2023/8/24/shin-2023-1_1692889270625.jpg">
-                    </a>
-                    <div class="pt-3 flex items-center justify-between">
-                        <p class="p-2">3DCG! SHIN – CẬU BÉ BÚT CHÌ: ĐẠI CHIẾN SIÊU NĂNG LỰC ~ SUSHI BAY</p>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                    <a href="#" class="film">
-                        <img class="hover:grow hover:shadow-lg bg-cover m-auto h-auto w-full p-2" src="https://cdn.galaxycine.vn/media/2023/8/24/shin-2023-1_1692889270625.jpg">
-                    </a>
-                    <div class="pt-3 flex items-center justify-between">
-                        <p class="p-2">3DCG! SHIN – CẬU BÉ BÚT CHÌ: ĐẠI CHIẾN SIÊU NĂNG LỰC ~ SUSHI BAY</p>
-                    </div>
-                </div>
+                @endforeach
                 <div class="more-button w-full">
                     <button class="float-right mx-10 bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-4 px-4 border border-orange-500 hover:border-transparent rounded w-40 flex gap-2 justify-center">
                         {{ __('See more') }}
@@ -149,38 +131,20 @@
                         </div>
                     </div>
                 </nav>
-                <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                    <a href="#" class="film">
-                        <img class="hover:grow hover:shadow-lg bg-cover m-auto h-auto w-full p-2" src="https://cdn.galaxycine.vn/media/2023/6/13/300wx450h_1686640452930.jpg">
-                    </a>
-                    <div class="pt-3 flex items-center justify-between">
-                        <p class="p-2">KẺ ẨN DANH</p>
+                @foreach ($hotFilms as $hotFilm)
+                    <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+                        <a href="#" class="film">
+                            @foreach ($hotFilm->film->medias as $media)
+                                @if($media->type == "avatar")
+                                    <img class="hover:grow hover:shadow-lg bg-cover m-auto h-auto w-full p-2" src="{{ $media->link }}"/>
+                                @endif
+                            @endforeach
+                        </a>
+                        <div class="pt-3 flex items-center justify-between">
+                            <p class="p-2">{{ $hotFilm->film->title }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                    <a href="#" class="film">
-                        <img class="hover:grow hover:shadow-lg bg-cover m-auto h-auto w-full p-2" src="https://cdn.galaxycine.vn/media/2023/6/13/300wx450h_1686640452930.jpg">
-                    </a>
-                    <div class="pt-3 flex items-center justify-between">
-                        <p class="p-2">KẺ ẨN DANH</p>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                    <a href="#" class="film">
-                        <img class="hover:grow hover:shadow-lg bg-cover m-auto h-auto w-full p-2" src="https://cdn.galaxycine.vn/media/2023/6/13/300wx450h_1686640452930.jpg">
-                    </a>
-                    <div class="pt-3 flex items-center justify-between">
-                        <p class="p-2">KẺ ẨN DANH</p>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                    <a href="#" class="film">
-                        <img class="hover:grow hover:shadow-lg bg-cover m-auto h-auto w-full p-2" src="https://cdn.galaxycine.vn/media/2023/6/13/300wx450h_1686640452930.jpg">
-                    </a>
-                    <div class="pt-3 flex items-center justify-between">
-                        <p class="p-2">KẺ ẨN DANH</p>
-                    </div>
-                </div>
+                @endforeach
                 <div class="more-button w-full">
                     <button class="float-right mx-10 bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-4 px-4 border border-orange-500 hover:border-transparent rounded w-40 flex gap-2 justify-center">
                         {{ __('See more') }}
@@ -224,120 +188,30 @@
                             <input type="date" name="" id="" class="" value="{{ date('Y-m-d') }}">
                         </div>
                         <div class="list-screenings row-span-1 mt-10 divide-y divide-gray-200 grid grid-cols-3 gap-4">
-                            <a href="#" class="screening p-4 rounded-md border border-gray-200 grid grid-cols-4 gap-4 hover:shadow-lg">
-                                <div class="h-full w-auto overflow-hidden rounded-md border border-gray-200 col-span-1">
-                                    <img src="https://cdn.galaxycine.vn/media/2023/8/24/shin-2023-1_1692889270625.jpg"
-                                        class="h-full w-auto object-cover object-center hover:grow hover:shadow-lg bg-cover m-auto">
-                                </div>
-                                <div class="ml-4 col-span-3">
-                                    <div class="film-description my-2">
-                                        <h3 class="film-name my-2 p-2">
-                                            <b>3DCG! SHIN – CẬU BÉ BÚT CHÌ: ĐẠI CHIẾN SIÊU NĂNG LỰC ~ SUSHI BA</b>
-                                        </h3>
-                                        <p class="my-2 p-2">Theater ABC , Room 1</p>
+                            @foreach ($currentScreenings as $currentScreening)
+                                <a href="#" class="screening p-4 rounded-md border border-gray-200 grid grid-cols-4 gap-4 hover:shadow-lg">
+                                    <div class="h-full w-auto overflow-hidden rounded-md border border-gray-200 col-span-1">
+                                        @foreach ($currentScreening->film->medias as $media)
+                                            @if($media->type == "avatar")
+                                                <img src="{{ $media->link }}" class="h-full w-auto object-cover object-center hover:grow hover:shadow-lg bg-cover m-auto"/>
+                                            @endif
+                                        @endforeach
                                     </div>
-                                    <div class="flex flex-1 items-end justify-between text-sm">
-                                        <div class="screen-time border border-orange-300 p-2">
-                                            <p class="text-orange-600">8:00 - 10:00</p>
+                                    <div class="ml-4 col-span-3">
+                                        <div class="film-description my-2">
+                                            <h3 class="film-name my-2 p-2">
+                                                <b>{{ $currentScreening->film->title }}</b>
+                                            </h3>
+                                            <p class="my-2 p-2">{{ $currentScreening->room->name }}</p>
+                                        </div>
+                                        <div class="flex flex-1 items-end justify-between text-sm">
+                                            <div class="screen-time border border-orange-300 p-2">
+                                                <p class="text-orange-600">{{ $currentScreening->startTime }} - {{ $currentScreening->endTime }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                            <a href="#" class="screening p-4 rounded-md border border-gray-200 grid grid-cols-4 gap-4 hover:shadow-lg">
-                                <div class="h-full w-auto overflow-hidden rounded-md border border-gray-200 col-span-1">
-                                    <img src="https://cdn.galaxycine.vn/media/2023/8/24/shin-2023-1_1692889270625.jpg"
-                                        class="h-full w-auto object-cover object-center hover:grow hover:shadow-lg bg-cover m-auto">
-                                </div>
-                                <div class="ml-4 col-span-3">
-                                    <div class="film-description my-2">
-                                        <h3 class="film-name my-2 p-2">
-                                            <b>3DCG! SHIN – CẬU BÉ BÚT CHÌ: ĐẠI CHIẾN SIÊU NĂNG LỰC ~ SUSHI BA</b>
-                                        </h3>
-                                        <p class="my-2 p-2">Theater ABC , Room 1</p>
-                                    </div>
-                                    <div class="flex flex-1 items-end justify-between text-sm">
-                                        <div class="screen-time border border-orange-300 p-2">
-                                            <p class="text-orange-600">8:00 - 10:00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="screening p-4 rounded-md border border-gray-200 grid grid-cols-4 gap-4 hover:shadow-lg">
-                                <div class="h-full w-auto overflow-hidden rounded-md border border-gray-200 col-span-1">
-                                    <img src="https://cdn.galaxycine.vn/media/2023/8/24/shin-2023-1_1692889270625.jpg"
-                                        class="h-full w-auto object-cover object-center hover:grow hover:shadow-lg bg-cover m-auto">
-                                </div>
-                                <div class="ml-4 col-span-3">
-                                    <div class="film-description my-2">
-                                        <h3 class="film-name my-2 p-2">
-                                            <b>3DCG! SHIN – CẬU BÉ BÚT CHÌ: ĐẠI CHIẾN SIÊU NĂNG LỰC ~ SUSHI BA</b>
-                                        </h3>
-                                        <p class="my-2 p-2">Theater ABC , Room 1</p>
-                                    </div>
-                                    <div class="flex flex-1 items-end justify-between text-sm">
-                                        <div class="screen-time border border-orange-300 p-2">
-                                            <p class="text-orange-600">8:00 - 10:00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="screening p-4 rounded-md border border-gray-200 grid grid-cols-4 gap-4 hover:shadow-lg">
-                                <div class="h-full w-auto overflow-hidden rounded-md border border-gray-200 col-span-1">
-                                    <img src="https://cdn.galaxycine.vn/media/2023/8/24/shin-2023-1_1692889270625.jpg"
-                                        class="h-full w-auto object-cover object-center hover:grow hover:shadow-lg bg-cover m-auto">
-                                </div>
-                                <div class="ml-4 col-span-3">
-                                    <div class="film-description my-2">
-                                        <h3 class="film-name my-2 p-2">
-                                            <b>3DCG! SHIN – CẬU BÉ BÚT CHÌ: ĐẠI CHIẾN SIÊU NĂNG LỰC ~ SUSHI BA</b>
-                                        </h3>
-                                        <p class="my-2 p-2">Theater ABC , Room 1</p>
-                                    </div>
-                                    <div class="flex flex-1 items-end justify-between text-sm">
-                                        <div class="screen-time border border-orange-300 p-2">
-                                            <p class="text-orange-600">8:00 - 10:00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="screening p-4 rounded-md border border-gray-200 grid grid-cols-4 gap-4 hover:shadow-lg">
-                                <div class="h-full w-auto overflow-hidden rounded-md border border-gray-200 col-span-1">
-                                    <img src="https://cdn.galaxycine.vn/media/2023/8/24/shin-2023-1_1692889270625.jpg"
-                                        class="h-full w-auto object-cover object-center hover:grow hover:shadow-lg bg-cover m-auto">
-                                </div>
-                                <div class="ml-4 col-span-3">
-                                    <div class="film-description my-2">
-                                        <h3 class="film-name my-2 p-2">
-                                            <b>3DCG! SHIN – CẬU BÉ BÚT CHÌ: ĐẠI CHIẾN SIÊU NĂNG LỰC ~ SUSHI BA</b>
-                                        </h3>
-                                        <p class="my-2 p-2">Theater ABC , Room 1</p>
-                                    </div>
-                                    <div class="flex flex-1 items-end justify-between text-sm">
-                                        <div class="screen-time border border-orange-300 p-2">
-                                            <p class="text-orange-600">8:00 - 10:00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="screening p-4 rounded-md border border-gray-200 grid grid-cols-4 gap-4 hover:shadow-lg">
-                                <div class="h-full w-auto overflow-hidden rounded-md border border-gray-200 col-span-1">
-                                    <img src="https://cdn.galaxycine.vn/media/2023/8/24/shin-2023-1_1692889270625.jpg"
-                                        class="h-full w-auto object-cover object-center hover:grow hover:shadow-lg bg-cover m-auto">
-                                </div>
-                                <div class="ml-4 col-span-3">
-                                    <div class="film-description my-2">
-                                        <h3 class="film-name my-2 p-2">
-                                            <b>3DCG! SHIN – CẬU BÉ BÚT CHÌ: ĐẠI CHIẾN SIÊU NĂNG LỰC ~ SUSHI BA</b>
-                                        </h3>
-                                        <p class="my-2 p-2">Theater ABC , Room 1</p>
-                                    </div>
-                                    <div class="flex flex-1 items-end justify-between text-sm">
-                                        <div class="screen-time border border-orange-300 p-2">
-                                            <p class="text-orange-600">8:00 - 10:00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>

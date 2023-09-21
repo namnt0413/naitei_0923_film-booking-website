@@ -4,6 +4,8 @@ return [
     'price' => 5000,
     'transaction_request' => 5,
     'items_per_page' => 10,
+    'homepage_max_film_item' => 4,
+    'homepage_max_screening_item' => 6,
 
     /*
     |--------------------------------------------------------------------------
@@ -70,7 +72,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
