@@ -140,5 +140,12 @@
     "No tickets booked": "No tickets booked",
     "Derictor": "Derictor",
     "Year of manufacture": "Year of manufacture",
-    "Description of movie content": "Description of movie content"
+    "Description of movie content": "Description of movie content",
+    "List users": "List of users",
+    "Full name": "Full name",
+    "Block": "Block",
+    "Unblock": "Unblock",
+    "Detail user": "Detail of user",
+    "Role": "Role",
+    "Homepage": "Homepage"
 }
