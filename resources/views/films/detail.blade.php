@@ -31,7 +31,7 @@
                 @endforeach
             </div>
             <div class="flex gap-2 py-4 px-2 grid grid-rows-1">
-                <a href="{{ route('tickets.booking', ['film' => $film]) }}" class="float-right bg-transparent hover:bg-orange-500 text-orange-700 uppercase font-bold hover:text-white
+                <a href="{{ route('films.booking', ['film' => $film]) }}" class="float-right bg-transparent hover:bg-orange-500 text-orange-700 uppercase font-bold hover:text-white
                     py-4 px-4 border border-orange-500 hover:border-transparent rounded w-40 flex gap-3 justify-center">
                     {{ __('Book ticket') }}
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

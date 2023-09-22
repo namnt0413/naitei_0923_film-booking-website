@@ -11,7 +11,7 @@
                     <nav>
                         <ul class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
                             <li class="hover:bg-zinc-800 active:bg-zinc-800">
-                                <a class="inline-block no-underline hover:text-orange-500 hover:no-underline py-4 px-4 w-36 h-auto text-center text-white"href="#">{{ __('Film') }}</a>
+                                <a class="inline-block no-underline hover:text-orange-500 hover:no-underline py-4 px-4 w-36 h-auto text-center text-white" href="{{ route('search') }}">{{ __('Film') }}</a>
                             </li>
                             <li class="hover:bg-zinc-800 active:bg-zinc-800">
                                 <a class="inline-block no-underline hover:text-orange-500 hover:no-underline py-4 px-4 w-36 h-auto text-center text-white"href="#">{{ __('Book ticket') }}</a>
