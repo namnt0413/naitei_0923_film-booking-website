@@ -131,4 +131,9 @@ class FilmController extends Controller
 
         return redirect()->route('films.index')->with('success', trans('Successfully deleted'));
     }
+
+    public function detail(Film $film)
+    {
+        return view('films.detail', compact('film'));
+    }
 }
