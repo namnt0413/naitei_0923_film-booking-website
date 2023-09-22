@@ -1,5 +1,7 @@
 <x-app-layout>
+
     <x-slot name="header">
+        @include('layouts.navbar')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Booking') }}
         </h2>
@@ -43,16 +45,18 @@
                 <div class="flex flex-col gap-5 mt-5">
                     <p class="font-bold text-lg">{{ __("List seats") }}:</p>
                     <div class='flex flex-col' id='seat'>
-                        
+
                     </div>
                 </div>
-                
+
                 <button class="mt-5 w-48 h-12 text-lg rounded-md bg-green-600 text-white hover:bg-green-300 hover:text-gray-600 transition-all" type="submit">
                     {{ __("Booking") }}
                 </button>
             </form>
         </div>
     </div>
+
+    @include('layouts.footer')
 
     <script src="{{ asset('js/booking.js') }}"></script>
 </x-app-layout>

@@ -83,7 +83,7 @@
                 </nav>
                 @foreach ($newFilms as $newFilm)
                     <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                        <a href="#" class="film">
+                        <a href="{{ route('films.detail', ['film' => $newFilm]) }}" class="film">
                             @foreach ($newFilm->medias as $media)
                                 @if($media->type == "avatar")
                                     <img class="hover:grow hover:shadow-lg bg-cover m-auto h-auto w-full p-2" src="{{ $media->link }}"/>
@@ -133,7 +133,7 @@
                 </nav>
                 @foreach ($hotFilms as $hotFilm)
                     <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                        <a href="#" class="film">
+                        <a href="{{ route('films.detail', ['film' => $hotFilm->film]) }}" class="film">
                             @foreach ($hotFilm->film->medias as $media)
                                 @if($media->type == "avatar")
                                     <img class="hover:grow hover:shadow-lg bg-cover m-auto h-auto w-full p-2" src="{{ $media->link }}"/>

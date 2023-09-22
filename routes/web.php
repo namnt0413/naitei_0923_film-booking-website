@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store');
     Route::delete('/tickets/{ticket}', [TicketController::class, 'destroy'])->name('tickets.destroy');
-    Route::get('/films/{film}/booking', [TicketController::class, 'renderBooking']);
+    Route::get('/films/{film}/booking', [TicketController::class, 'renderBooking'])->name('tickets.booking');
 
     Route::get('/tickets/list', [TicketController::class, 'bookedTickets'])->name('tickets.booked');
     Route::get('/tickets/list/{ticket}', [TicketController::class, 'detailTicket'])->name('tickets.detail');
@@ -39,6 +39,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/films/{film}', [FilmController::class, 'detail'])->name('films.detail');
 });
 
 Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
