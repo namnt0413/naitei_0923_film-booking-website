@@ -62,7 +62,7 @@ class FilmController extends Controller
             }
             DB::commit();
 
-            return redirect()->route('films.index')->with('success', trans('Successfully deleted'));
+            return redirect()->route('films.index')->with('success', trans('Successfully created'));
         } catch (\Exception $exception) {
             DB::rollBack();
             Log::error('Message: ' . $exception->getMessage() . ' --- Line: ' . $exception->getLine());
@@ -134,7 +134,7 @@ class FilmController extends Controller
     {
         return view('films.detail', compact('film'));
     }
-    
+
     public function search(SearchRequest $request)
     {
         $validated = $request->validated();
