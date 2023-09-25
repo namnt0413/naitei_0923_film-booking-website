@@ -45,13 +45,13 @@ class ScreeningController extends Controller
     public function store(CreateRequest $request)
     {
         $validated = $request->validated();
-    
+
         if (checkOverlapped('screenings', $request->input('start_time'), $request->input('end_time'), null)) {
             return redirect()->back()->with('error', trans('Overlapped time'));
         }
-    
+
         Screening::create(array_merge($validated, ["remain" => $validated['total']]));
-    
+
         return redirect()->back()->with('success', trans("Successfully created"));
     }
 
@@ -116,5 +116,16 @@ class ScreeningController extends Controller
     public function searchByRoom(Request $request, Room $room)
     {
         return response()->json($room->screenings);
+    }
+
+    public function searchScreeningByDate($date)
+    {
+        $screenings = Screening::with('film.medias', 'room:id,name')
+            ->selectRaw('* , DATE_FORMAT(start_time, "%H:%i") AS startTime, DATE_FORMAT(end_time, "%H:%i") AS endTime')
+            ->whereRaw('DATE(start_time) = ?', [$date])
+            ->whereRaw('start_time >= NOW()')
+            ->take(config('app.homepage_max_screening_item'))->orderBy('start_time', 'ASC')->get();
+
+        return $screenings;
     }
 }

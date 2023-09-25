@@ -183,10 +183,12 @@
                 </nav>
                 <div class="current-screenings w-full">
                     <div class="px-4 py-4 grid grid-row-2">
-                        <div class="flex items-start row-span-1">
-                        <h2 class="text-lg font-medium text-gray-900 p-2" id="slide-over-title">{{ __('Select date') }} : </h2>
-                            <input type="date" name="" id="" class="" value="{{ date('Y-m-d') }}">
-                        </div>
+                        <form class="flex items-start row-span-1" method="get">
+                            @csrf
+                            <h2 class="text-lg font-medium text-gray-900 p-2" id="slide-over-title">{{ __('Select date') }} : </h2>
+                            <input type="date" name="date" id="date" class="" value="{{ date('Y-m-d') }}">
+                            <button class="p-2 mx-2 bg-orange-500 hover:bg-orange-700 text-white rounded" id="screening">{{ __('Search') }}</button>
+                        </form>
                         <div class="list-screenings row-span-1 mt-10 divide-y divide-gray-200 grid grid-cols-3 gap-4">
                             @foreach ($currentScreenings as $currentScreening)
                                 <a href="#" class="screening p-4 rounded-md border border-gray-200 grid grid-cols-4 gap-4 hover:shadow-lg">
@@ -229,5 +231,7 @@
     </div>
 
     @include('layouts.footer')
+
+    <script src="{{ asset('js/screening.js') }}"></script>
 
 </x-app-layout>
