@@ -20,7 +20,7 @@
                                 <a class="inline-block no-underline hover:text-orange-500 hover:no-underline py-4 px-4 w-36 h-auto text-center text-white"href="#">{{ __('Theater') }}</a>
                             </li>
                             <li class="hover:bg-zinc-800 active:bg-zinc-800">
-                                <a class="inline-block no-underline hover:text-orange-500 hover:no-underline py-4 px-4 w-36 h-auto text-center text-white"href="#">{{ __('User') }}</a>
+                                <a class="inline-block no-underline hover:text-orange-500 hover:no-underline py-4 px-4 w-36 h-auto text-center text-white"href="{{ route('profile.edit') }}">{{ __('User') }}</a>
                             </li>
                         </ul>
                     </nav>
