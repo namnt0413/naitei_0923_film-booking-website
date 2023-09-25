@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Film\SearchRequest;
 use App\Http\Requests\Film\StoreRequest;
 use App\Http\Requests\Film\UpdateRequest;
-use Illuminate\Http\Request;
-use App\Models\Genre;
 use App\Models\Film;
+use App\Models\Genre;
 use App\Services\MediaService;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use DB;
 
 class FilmController extends Controller
 {
@@ -39,7 +39,7 @@ class FilmController extends Controller
      */
     public function create()
     {
-        $genres = Genre::all(['id','name']);
+        $genres = Genre::all(['id', 'name']);
 
         return view('films.create', compact('genres'));
     }
@@ -47,7 +47,8 @@ class FilmController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreRequest $request)
@@ -71,7 +72,6 @@ class FilmController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Film $film
      * @return \Illuminate\Http\Response
      */
     public function show(Film $film)
@@ -82,12 +82,11 @@ class FilmController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Film $film
      * @return \Illuminate\Http\Response
      */
     public function edit(Film $film)
     {
-        $genres = Genre::all(['id','name']);
+        $genres = Genre::all(['id', 'name']);
 
         return view('films.edit', compact('genres', 'film'));
     }
@@ -95,8 +94,8 @@ class FilmController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Film $film
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateRequest $request, Film $film)
@@ -118,7 +117,6 @@ class FilmController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Film $film
      * @return \Illuminate\Http\Response
      */
     public function destroy(Film $film)
@@ -135,5 +133,27 @@ class FilmController extends Controller
     public function detail(Film $film)
     {
         return view('films.detail', compact('film'));
+    }
+    
+    public function search(SearchRequest $request)
+    {
+        $validated = $request->validated();
+        $films = Film::when(isset($validated['search']), function ($q) use ($validated) {
+            return $q->where('title', 'like', '%' . $validated['search'].'%')
+                ->orWhere('description', 'like', '%' . $validated['search'].'%')
+                ->orWhere('director', 'like', '%' . $validated['search'].'%');
+        })->when(isset($validated['remain']), function ($q) use ($validated) {
+            if ($validated['remain']) {
+                return $q->whereHas('screenings', function ($q) {
+                    return $q->where('remain', '>', 0);
+                });
+            } else {
+                return $q->whereDoesntHave('screenings', function ($q) {
+                    return $q->where('remain', '>', 0);
+                });
+            }
+        })->paginate(config('app.items_per_page'));
+
+        return view('films.search', compact('films'));
     }
 }

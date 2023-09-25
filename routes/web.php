@@ -28,10 +28,11 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('index');
+    Route::get('/films', [FilmController::class, 'search'])->name('search');
 
     Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store');
     Route::delete('/tickets/{ticket}', [TicketController::class, 'destroy'])->name('tickets.destroy');
-    Route::get('/films/{film}/booking', [TicketController::class, 'renderBooking'])->name('tickets.booking');
+    Route::get('/films/{film}/booking', [TicketController::class, 'renderBooking'])->name('films.booking');
 
     Route::get('/tickets/list', [TicketController::class, 'bookedTickets'])->name('tickets.booked');
     Route::get('/tickets/list/{ticket}', [TicketController::class, 'detailTicket'])->name('tickets.detail');
