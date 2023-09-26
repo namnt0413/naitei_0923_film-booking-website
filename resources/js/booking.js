@@ -1,6 +1,7 @@
 import $ from "jquery";
 
 $("#room").on("change", async function (e) {
+    let filmId = $("input[name='film_id'").val();
     $.ajax({
         type: "GET",
         url: `/seats/${e.target.value}/search`,
@@ -9,7 +10,7 @@ $("#room").on("change", async function (e) {
             selectSeat.empty();
             data.forEach((seat) => {
                 let element = `<div class='flex flex-col justify-center items-center w-fit h-fit'>
-                    <input type='radio' name='seat_id' value='${seat["id"]}' id='${seat["id"]}-screening'>
+                    <input type='checkbox' name='seats[]' value='${seat["id"]}' id='${seat["id"]}-screening'>
                     <label for='${seat["id"]}-screening'>${seat["number"]}-${seat["type"]}</label>
                 </div>`;
                 selectSeat.append(element);
@@ -19,7 +20,7 @@ $("#room").on("change", async function (e) {
 
     $.ajax({
         type: "GET",
-        url: `/screenings/${e.target.value}/search`,
+        url: `/screenings/${e.target.value}/${filmId}/search`,
         success: function (data) {
             let selectScreening = $("#screening");
             selectScreening.empty();

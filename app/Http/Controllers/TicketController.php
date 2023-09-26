@@ -8,6 +8,8 @@ use App\Models\Film;
 use App\Models\Screening;
 use App\Models\Seat;
 use App\Models\Ticket;
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -33,6 +35,7 @@ class TicketController extends Controller
         foreach ($tmpScreenings as $screeing) {
             array_push($rooms, $screeing->room);
         }
+        $rooms = array_unique($rooms);
 
         return view('tickets.booking', [
             "film" => $film,
@@ -85,19 +88,40 @@ class TicketController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        DB::transaction(function () use ($request) {
-            $validated = $request->validated();
-            $user_id = Auth::user()->id;
-            $price = config('app.price');
-            $seatRatio = Seat::find($validated['seat_id'])['price_ratio'];
-            $total = $seatRatio*$price;
-            $screeing = Screening::find($validated['screening_id']);
-            $screeing->remain -= 1;
-            $screeing->save();
-            Ticket::create(array_merge($validated, ["user_id" => $user_id, "price" => $total]));
-        }, config('app.transaction_request'));
-
-        return redirect()->back()->with('success', trans('Successfully created'));
+        try {
+            DB::transaction(function () use ($request) {
+                $validated = $request->validated();
+                $user_id = Auth::user()->id;
+                $price = config('app.price');
+                $screeing = Screening::find($validated['screening_id']);
+                $screeing->remain -= count($validated['seats']);
+                $screeing->save();
+                if ($screeing->remain < 0) {
+                    throw new Exception(trans('Unsuccessfully created'));
+                }
+                // createMany
+                $data = [];
+                $seats = Seat::whereIn('id', $validated['seats'])->get();
+                foreach ($seats as $seat) {
+                    $ticket = [
+                        'film_id' => $validated['film_id'],
+                        'room_id' => $validated['room_id'],
+                        'screening_id' => $validated['screening_id'],
+                        'user_id' => $user_id,
+                        'seat_id' => $seat->id,
+                        'price' => $price * $seat->price_ratio,
+                        'created_at' => Carbon::now()->toDateTimeString(),
+                        'updated_at' => Carbon::now()->toDateTimeString(),
+                    ];
+                    array_push($data, $ticket);
+                }
+                Ticket::insert($data);
+            }, config('app.transaction_request'));
+    
+            return redirect()->back()->with('success', trans('Successfully created'));
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', trans($th->getMessage()));
+        }
     }
 
     /**

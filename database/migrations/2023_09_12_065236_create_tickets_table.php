@@ -19,6 +19,7 @@ class CreateTicketsTable extends Migration
             $table->integer('user_id');
             $table->integer('screening_id');
             $table->integer('seat_id');
+            $table->integer('room_id');
             $table->float('price')->min(0);
             $table->timestamps();
         });
