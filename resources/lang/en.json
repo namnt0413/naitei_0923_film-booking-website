@@ -155,5 +155,8 @@
     "Unsuccessfully created": "Create failed",
     "Unsuccessfully updated": "Update failed",
     "Unsuccessfully deleted": "Delete failed",
-    "Room image": "Room image"
+    "Room image": "Room image",
+    "Mail notification": "Mail notification for booking tickets",
+    "Thank :user for booking": "Thank :user for booked tickets. Below is information of your booked tickets.",
+    "Ticket number :num": "Ticket number :num"
 }

@@ -33,6 +33,11 @@ class Ticket extends Model
         return $this->belongsTo(Screening::class);
     }
 
+    public function room(): BelongsTo
+    {
+        return $this->belongsTo(Room::class);
+    }
+
     public function film(): BelongsTo
     {
         return $this->belongsTo(Film::class);

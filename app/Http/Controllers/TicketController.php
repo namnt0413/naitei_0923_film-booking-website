@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Ticket\CreateRequest;
 use App\Http\Requests\Ticket\UpdateRequest;
+use App\Mail\TicketBookedMail;
 use App\Models\Film;
 use App\Models\Screening;
 use App\Models\Seat;
 use App\Models\Ticket;
 use Carbon\Carbon;
+use Doctrine\DBAL\Schema\Table;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class TicketController extends Controller
 {
@@ -89,7 +92,8 @@ class TicketController extends Controller
     public function store(CreateRequest $request)
     {
         try {
-            DB::transaction(function () use ($request) {
+            $insertedTickets = [];
+            DB::transaction(function () use ($request, &$insertedTickets) {
                 $validated = $request->validated();
                 $user_id = Auth::user()->id;
                 $price = config('app.price');
@@ -99,7 +103,6 @@ class TicketController extends Controller
                 if ($screeing->remain < 0) {
                     throw new Exception(trans('Unsuccessfully created'));
                 }
-                // createMany
                 $data = [];
                 $seats = Seat::whereIn('id', $validated['seats'])->get();
                 foreach ($seats as $seat) {
@@ -115,8 +118,14 @@ class TicketController extends Controller
                     ];
                     array_push($data, $ticket);
                 }
-                Ticket::insert($data);
+                foreach ($data as $ticket) {
+                    $tk = Ticket::create($ticket);
+                    array_push($insertedTickets, $tk);
+                }
             }, config('app.transaction_request'));
+
+            $user = Auth::user();
+            Mail::to($user)->queue(new TicketBookedMail($insertedTickets));
     
             return redirect()->back()->with('success', trans('Successfully created'));
         } catch (\Throwable $th) {
