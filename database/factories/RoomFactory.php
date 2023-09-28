@@ -15,6 +15,7 @@ class RoomFactory extends Factory
     {
         return [
             'name' => $this->faker->text(20),
+            'image' => $this->faker->text(20),
             'created_at' => now(),
             'updated_at' => now(),
         ];

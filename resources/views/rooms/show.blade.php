@@ -6,7 +6,12 @@
     </x-slot>
 
     <div class="container mx-auto p-4">
-        <div class="bg-gray-300 w-5/6 mx-auto h-14 rounded-lg border-slate-300 border-2 text-2xl text-center mt-3 mb-10">{{ __('Movie Screen' )}}</div>
+        <div class="p-2 text-center uppercase tracking-wide font-bold text-orange-800 text-xl">
+            {{ $room->name }}
+        </div>
+        <div class="px-10 py-2 mb-10">
+            <img class="object-cover bg-cover m-auto h-auto w-1/2" src="{{ $room->image }}"/>
+        </div>
         <div class="grid grid-cols-6 gap-8">
             @foreach($room->seats as $seat)
             <div class="bg-gray-200 p-4 rounded-lg shadow-md">
