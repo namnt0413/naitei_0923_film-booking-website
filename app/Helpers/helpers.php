@@ -12,8 +12,8 @@ if (!function_exists('checkOverlapped')) {
         })->exists();
     }
 
-    function checkExistNumberSeat($table, $room_id, $number)
+    function checkExistSeatName($table, $room_id, $name)
     {
-        return DB::table($table)->where('room_id', $room_id)->where('number', $number)->exists();
+        return DB::table($table)->where('room_id', $room_id)->where('name', $name)->exists();
     }
 }

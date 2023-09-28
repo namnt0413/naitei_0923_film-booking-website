@@ -15,7 +15,7 @@ class SeatFactory extends Factory
     public function definition()
     {
         return [
-            'number' => $this->faker->numberBetween(1, 100),
+            'name' => $this->faker->text(10),
             'room_id' => Room::all()->random()->id,
             'price_ratio' => $this->faker->randomFloat(2, 0, 2),
             'type' => $this->faker->numberBetween(1, 3),

@@ -19,7 +19,7 @@
                     <th class="px-6 py-4" scope="row text-black">{{ $key }}</th>
                     <td class="px-6 py-4">{{ $ticket->film->title }}</td>
                     <td class="px-6 py-4">{{ $ticket->screening->room->name }}</td>
-                    <td class="px-6 py-4">{{ $ticket->seat->number }}</td>
+                    <td class="px-6 py-4">{{ $ticket->seat->name }}</td>
                     <td class="px-6 py-4 flex gap-3 justify-center items-center">
                         <a href="{{ route('tickets.show', ['ticket' => $ticket]) }}">
                             <button class="w-24 h-12 rounded-md bg-cyan-600 text-white hover:bg-cyan-300 hover:text-gray-600 transition-all">
@@ -45,5 +45,5 @@
     </table>
     <div class="d-felx justify-content-center">
         {{ $tickets->links() }}
-    </div> 
+    </div>
 </x-admin-layout>

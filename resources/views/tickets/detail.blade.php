@@ -16,7 +16,7 @@
                     <h1 class="text-4xl font-semibold mb-2">{{ $ticket->film->title }}</h1>
                     <p class="text-xl text-gray-600 mb-2">{{ __('Room') }}: {{ $ticket->seat->room->name }}</p>
                     <p class="text-xl text-gray-600 mb-2">{{ __('Screening') }}: {{ $ticket->screening->start_time }} - {{ $ticket->screening->start_time }}</p>
-                    <p class="text-xl text-gray-600 mb-2">{{ __('Seat number') }}: {{ $ticket->seat->number }}</p>
+                    <p class="text-xl text-gray-600 mb-2">{{ __('Seat number') }}: {{ $ticket->seat->name }}</p>
                     <p class="text-xl text-gray-600 mb-2">{{ __('Genres') }}: {{ $ticket->film->genres->first()->name }}</p>
                     <p class="text-xl text-gray-600 mb-2">{{ __('Director') }}: {{ $ticket->film->director }}</p>
                     <p class="text-xl text-gray-600 mb-2">{{ __('Year of manufacture') }}: {{ $ticket->film->release_date }}</p>

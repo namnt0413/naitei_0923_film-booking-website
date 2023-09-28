@@ -46,7 +46,7 @@ class SeatController extends Controller
     {
         $validated = $request->validated();
 
-        if (checkExistNumberSeat('seats', $validated['room_id'], $validated['number'])) {
+        if (checkExistSeatName('seats', $validated['room_id'], $validated['name'])) {
             return redirect()->back()->with('error', trans('Existed Number Seat'));
         }
 
@@ -106,7 +106,7 @@ class SeatController extends Controller
             $seat->tickets()->delete();
             $seat->delete();
         }, config('app.transaction_request'));
-        
+
         return redirect()->route('rooms.index')->with('success', trans('Successfully deleted'));
     }
 
