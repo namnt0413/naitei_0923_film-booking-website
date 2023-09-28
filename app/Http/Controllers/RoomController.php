@@ -8,9 +8,12 @@ use App\Models\Room;
 use App\Models\Screening;
 use App\Models\Ticket;
 use Illuminate\Support\Facades\DB;
+use App\Traits\StoreImageTrait;
 
 class RoomController extends Controller
 {
+    use StoreImageTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -41,8 +44,14 @@ class RoomController extends Controller
      */
     public function store(CreateRequest $request)
     {
+        if ($request->hasFile('image')) {
+            $imageUpload = $this->uploadImageToStorage($request->file('image'), 'room');
+        }
         $validated = $request->validated();
-        Room::create($validated);
+        Room::create([
+            "name" => $validated["name"],
+            "image" => $imageUpload["link"],
+        ]);
 
         return redirect()->route('rooms.index')->with('success', trans('Successfully created'));
     }
@@ -80,6 +89,10 @@ class RoomController extends Controller
     {
         $validated = $request->validated();
         $room->name = $validated['name'];
+        if ($request->hasFile('image')) {
+            $imageUpload = $this->uploadImageToStorage($request->file('image'), 'room');
+            $room->image =  $imageUpload['link'];
+        }
         $room->save();
 
         return redirect()->route('rooms.index')->with('success', trans('Successfully updated'));

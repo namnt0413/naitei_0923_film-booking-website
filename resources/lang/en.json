@@ -154,5 +154,6 @@
     "Search": "Search",
     "Unsuccessfully created": "Create failed",
     "Unsuccessfully updated": "Update failed",
-    "Unsuccessfully deleted": "Delete failed"
+    "Unsuccessfully deleted": "Delete failed",
+    "Room image": "Room image"
 }
