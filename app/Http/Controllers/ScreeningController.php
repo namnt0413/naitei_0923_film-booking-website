@@ -113,9 +113,14 @@ class ScreeningController extends Controller
         return redirect()->route('screenings.index')->with('success', trans('Successfully deleted'));
     }
 
-    public function searchByRoom(Request $request, Room $room)
+    public function searchByRoom(Request $request, int $room, int $film)
     {
-        return response()->json($room->screenings);
+        return response()->json(
+            Screening::where('room_id', $room)
+            ->where('film_id', $film)
+            ->where('remain', '>', 0)
+            ->get()
+        );
     }
 
     public function searchScreeningByDate($date)

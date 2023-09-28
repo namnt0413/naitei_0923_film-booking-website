@@ -151,5 +151,8 @@
     "Input information": "Input film's information here",
     "Remain": "Remain",
     "Not remain": "Not remain",
-    "Search": "Search"
+    "Search": "Search",
+    "Unsuccessfully created": "Create failed",
+    "Unsuccessfully updated": "Update failed",
+    "Unsuccessfully deleted": "Delete failed"
 }

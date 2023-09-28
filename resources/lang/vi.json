@@ -189,5 +189,8 @@
     "Homepage": "Trang chủ",
     "Input information": "Nhập thông tin film vào đây",
     "Not remain": "Hết chỗ",
-    "Search": "Tìm kiếm"
+    "Search": "Tìm kiếm",
+    "Unsuccessfully created": "Tạo thất bại",
+    "Unsuccessfully updated": "Cập nhật thất bại",
+    "Unsuccessfully deleted": "Xóa thất bại"
 }

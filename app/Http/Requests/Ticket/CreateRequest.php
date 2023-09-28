@@ -27,7 +27,8 @@ class CreateRequest extends FormRequest
             'film_id' => 'required|integer|min:0|exists:films,id',
             'room_id' => 'required|integer|min:0|exists:rooms,id',
             'screening_id' => 'required|integer|min:0|exists:screenings,id',
-            'seat_id' => 'required|integer|min:0|exists:seats,id',
+            'seats' => 'required|array',
+            'seats.*' => 'required|integer|min:0|exists:seats,id',
         ];
     }
 }

@@ -55,7 +55,7 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::get('/seats/{room}/search', [SeatController::class, 'searchByRoom']);
-Route::get('/screenings/{room}/search', [ScreeningController::class, 'searchByRoom']);
+Route::get('/screenings/{room}/{film}/search', [ScreeningController::class, 'searchByRoom']);
 Route::get('/screenings/date/{date}', [ScreeningController::class, 'searchScreeningByDate']);
 
 require __DIR__.'/auth.php';
