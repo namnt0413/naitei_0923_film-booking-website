@@ -193,5 +193,8 @@
     "Unsuccessfully created": "Tạo thất bại",
     "Unsuccessfully updated": "Cập nhật thất bại",
     "Unsuccessfully deleted": "Xóa thất bại",
-    "Room image": "Sơ đồ phòng"
+    "Room image": "Sơ đồ phòng",
+    "Mail notification": "Mail thông báo đặt vé",
+    "Thank :user for booking": "Cảm ơn :user đã đặt vé. Dưới đây là thông tin vé của bạn đã đặt.",
+    "Ticket number :num": "Vé số :num"
 }
