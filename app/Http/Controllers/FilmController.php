@@ -7,6 +7,8 @@ use App\Http\Requests\Film\StoreRequest;
 use App\Http\Requests\Film\UpdateRequest;
 use App\Models\Film;
 use App\Models\Genre;
+use App\Models\Review;
+use Illuminate\Support\Facades\Auth;
 use App\Services\MediaService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -132,7 +134,10 @@ class FilmController extends Controller
 
     public function detail(Film $film)
     {
-        return view('films.detail', compact('film'));
+        $id = Auth::user()->id;
+        $reviews = Review::with('user')->where('film_id', $film->id)->get();
+        
+        return view('films.detail', compact('film', 'reviews', 'id'));
     }
 
     public function search(SearchRequest $request)

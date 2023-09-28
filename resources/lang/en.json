@@ -158,5 +158,9 @@
     "Room image": "Room image",
     "Mail notification": "Mail notification for booking tickets",
     "Thank :user for booking": "Thank :user for booked tickets. Below is information of your booked tickets.",
-    "Ticket number :num": "Ticket number :num"
+    "Ticket number :num": "Ticket number :num",
+    "Comment": "Comment",
+    "Create comment": "Create comment",
+    "Update comment": "Update comment",
+    "Reviews and comments": "Reviews and comments"
 }
