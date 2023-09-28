@@ -9,8 +9,8 @@
         <form action="{{ route('seats.store') }}" method="post">
             @csrf
             <div class="mb-2">
-                <label class="block text-lg font-bold mb-2" for="number">{{ __("Seat number") }}</label>
-                <input type="number" placeholder="{{ __('Seat number') }}" name="number" id="number">
+                <label class="block text-lg font-bold mb-2" for="name">{{ __("Seat name") }}</label>
+                <input type="text" placeholder="{{ __('Seat name') }}" name="name" id="name">
             </div>
 
             <div class="mb-2">

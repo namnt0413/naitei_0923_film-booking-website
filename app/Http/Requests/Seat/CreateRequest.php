@@ -24,7 +24,7 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'number' => 'required|integer',
+            'name' => 'required|string',
             'room_id' => 'required|integer|min:0|exists:rooms,id',
             'price_ratio' => 'required|numeric|min:1',
             'type' => 'required|string|in:vip,couple,normal',

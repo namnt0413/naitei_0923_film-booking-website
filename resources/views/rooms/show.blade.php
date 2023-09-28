@@ -10,7 +10,7 @@
         <div class="grid grid-cols-6 gap-8">
             @foreach($room->seats as $seat)
             <div class="bg-gray-200 p-4 rounded-lg shadow-md">
-                <div class="text-lg mb-2">{{ $seat->number }}</div>
+                <div class="text-lg mb-2">{{ $seat->name }}</div>
                 <div class="dropdown-container">
                     <button id="dropdownButton" class="button-action bg-blue-500 text-white p-2 rounded hover:bg-blue-600" data-dropdown-toggle="dropdown">{{ __('Action') }}</button>
                     <div class="dropdown-action absolute z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-39 dark:bg-gray-700 m-0">

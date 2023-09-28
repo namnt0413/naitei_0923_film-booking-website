@@ -18,7 +18,7 @@
                     <h2 class="text-xl font-semibold mb-2">{{ $ticket->film->title }}</h2>
                     <p class="text-gray-600">{{ __('Screening') }}: {{ $ticket->screening->start_time }} - {{ $ticket->screening->end_time }}</p>
                     <p class="text-gray-600">{{ __('Booking date') }}: {{ $ticket->created_at->format('d/m/Y') }}</p>
-                    <p class="text-gray-600">{{ __('Seat number') }}: {{ $ticket->seat->number }}</p>
+                    <p class="text-gray-600">{{ __('Seat number') }}: {{ $ticket->seat->name }}</p>
                     <p class="text-gray-600">{{ __('Room') }}: {{ $ticket->seat->room->name }}</p>
                     <p class="text-gray-600">{{ __('Price') }}: {{ number_format($ticket->price) }}</p>
                     <div class="flex flex-row justify-end">

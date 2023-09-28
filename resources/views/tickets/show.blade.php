@@ -20,7 +20,7 @@
         </div>
         <div class="flex gap-5">
             <p class="uppercase font-bold">{{ __("Seat number") }}: </p>
-            <p>{{ $ticket->seat->number }}</p>
+            <p>{{ $ticket->seat->name }}</p>
         </div>
         <div class="flex gap-5">
             <p class="uppercase font-bold">{{ __("Time") }}: </p>
@@ -30,7 +30,7 @@
             <p class="uppercase font-bold">{{ __("Price") }}: </p>
             <p>{{ $ticket->price }}</p>
         </div>
-        
+
         <div class="flex gap-3">
             <a href="{{ route('tickets.edit', ['ticket' => $ticket]) }}">
                 <button class="w-24 h-12 rounded-md bg-blue-600 text-white hover:bg-blue-300 hover:text-gray-600 transition-all">

@@ -8,7 +8,7 @@
     <div class="bg-white w-full border-gray-500 rounded-lg mt-5 flex flex-col py-5 px-5 gap-5">
         <div class="flex gap-5">
             <p class="uppercase font-bold">{{ __("Seat number") }}: </p>
-            <p>{{ $seat->number }}</p>
+            <p>{{ $seat->name }}</p>
         </div>
         <div class="flex gap-5">
             <p class="uppercase font-bold">{{ __("Room name") }}: </p>
