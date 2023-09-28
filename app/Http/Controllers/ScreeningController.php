@@ -46,7 +46,13 @@ class ScreeningController extends Controller
     {
         $validated = $request->validated();
 
-        if (checkOverlapped('screenings', $request->input('start_time'), $request->input('end_time'), null)) {
+        if (checkOverlapped(
+            'screenings',
+            $request->input('start_time'),
+            $request->input('end_time'),
+            $request->input('room_id'),
+            null
+        )) {
             return redirect()->back()->with('error', trans('Overlapped time'));
         }
 
@@ -88,7 +94,13 @@ class ScreeningController extends Controller
     {
         $validated = $request->validated();
 
-        if (checkOverlapped('screenings', $validated['start_time'], $validated['end_time'], $screening->id)) {
+        if (checkOverlapped(
+            'screenings',
+            $validated['start_time'],
+            $validated['end_time'],
+            $screening->room_id,
+            $screening->id
+        )) {
             return redirect()->back()->with('error', trans('Overlapped time'));
         }
 
