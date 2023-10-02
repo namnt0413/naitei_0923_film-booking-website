@@ -9,7 +9,7 @@ $("#room").on("change", async function (e) {
             let selectSeat = $("#seat");
             selectSeat.empty();
             data.forEach((seat) => {
-                let element = `<div class='flex flex-col justify-center items-center w-fit h-fit'>
+                let element = `<div class='col-span-1 flex flex-col justify-center items-center  w-32 h-auto gap-2'>
                     <input type='checkbox' name='seats[]' value='${seat["id"]}' id='${seat["id"]}-screening'>
                     <label for='${seat["id"]}-screening'>${seat["name"]}-${seat["type"]}</label>
                 </div>`;
@@ -31,6 +31,25 @@ $("#room").on("change", async function (e) {
                 </div>`;
                 selectScreening.append(element);
             });
+        },
+    });
+
+    $.ajax({
+        type: "GET",
+        url: `/rooms/${e.target.value}`,
+        success: function (data) {
+            $('.room-detail').empty()
+            let html =
+                `
+                    <div class="p-2 text-center uppercase tracking-wide font-bold text-orange-800 text-xl">
+                        ${data[0].name}
+                    </div>
+                    <div class="px-10 py-2 mb-10">
+                        <img class="object-cover bg-cover m-auto h-auto w-full" src="${data[0].image}"/>
+                    </div>
+                `;
+
+            $('.room-detail').prepend(html)
         },
     });
 });
