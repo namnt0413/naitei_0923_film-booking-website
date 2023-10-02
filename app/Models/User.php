@@ -61,12 +61,12 @@ class User extends Authenticatable
 
     public function setFirstNameAttribute($value)
     {
-        $this->attributes['first_name'] = Str::ucfirst($value);
+        $this->attributes['first_name'] = ucwords($value);
     }
 
     public function setLastNameAttribute($value)
     {
-        $this->attributes['last_name'] = Str::ucfirst($value);
+        $this->attributes['last_name'] = ucwords($value);
     }
 
     protected static function booted()

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Film;
+use App\Models\Room;
 use App\Models\Screening;
 use App\Models\Seat;
 use App\Models\User;
@@ -22,6 +23,7 @@ class TicketFactory extends Factory
             'user_id' => User::all()->random()->id,
             'screening_id' => Screening::all()->random()->id,
             'seat_id' => Seat::all()->random()->id,
+            'room_id' => Room::all()->random()->id,
             'price' => $this->faker->randomNumber(),
             'created_at' => now(),
             'updated_at' => now(),
