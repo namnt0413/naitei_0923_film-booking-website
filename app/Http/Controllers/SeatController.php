@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Seat\CreateRequest;
 use App\Http\Requests\Seat\UpdateRequest;
 use App\Models\Room;
+use App\Models\Screening;
 use App\Models\Seat;
 use App\Models\Ticket;
 use Illuminate\Support\Facades\DB;
@@ -112,15 +113,21 @@ class SeatController extends Controller
 
     public function searchByRoom(Request $request, Room $room)
     {
+        $seats = Seat::where('room_id', $room->id)->orderBy('type')->get();
+        return response()->json($seats);
+    }
+
+    public function searchByRoomScreening(Request $request, Room $room, Screening $screening)
+    {
         $seatIds = $room->seats()->pluck('id')->all();
-        $screeningIds = $room->screenings()->pluck('id')->all();
         $cannotBookingSeatIds = Ticket::whereIn('seat_id', $seatIds)
-            ->whereIn('screening_id', $screeningIds)
+            ->where('screening_id', $screening->id)
             ->pluck('seat_id')
             ->all();
         $seats = Seat::where('room_id', $room->id)
-            ->whereNotIn('id', $cannotBookingSeatIds)
+            ->whereIn('id', $cannotBookingSeatIds)
             ->get();
         return response()->json($seats);
     }
+
 }

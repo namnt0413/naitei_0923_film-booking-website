@@ -42,6 +42,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/films/{film}', [FilmController::class, 'detail'])->name('films.detail');
+
+    Route::get('/rooms/{room}', [RoomController::class, 'detail'])->name('rooms.detail');
 });
 
 Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
@@ -55,6 +57,8 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::get('/seats/{room}/search', [SeatController::class, 'searchByRoom']);
+Route::get('/seats/{room}/{screening}/search', [SeatController::class, 'searchByRoomScreening']);
+
 Route::get('/screenings/{room}/{film}/search', [ScreeningController::class, 'searchByRoom']);
 Route::get('/screenings/date/{date}', [ScreeningController::class, 'searchScreeningByDate']);
 
