@@ -25,7 +25,7 @@ class UserFactory extends Factory
             'password' => Hash::make('12345678'),
             'remember_token' => Str::random(10),
             'is_active' => true,
-            'role_id' => $this->faker->randomNumber(1, 3),
+            'role_id' => $this->faker->numberBetween(1, 2),
         ];
     }
 

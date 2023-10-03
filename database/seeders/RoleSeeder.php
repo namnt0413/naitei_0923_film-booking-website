@@ -15,7 +15,7 @@ class RoleSeeder extends Seeder
     public function run()
     {
         Role::unguard();
-        Role::factory(5)->create();
+        Role::insert([['name' => 'admin'], ['name' => 'user']]);
         Role::reguard();
     }
 }
