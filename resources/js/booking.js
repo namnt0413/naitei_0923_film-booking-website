@@ -1,12 +1,5 @@
 import $ from "jquery";
 
-// function checkSeatType(type, $returnedColor) {
-//     switch (type) {
-//         case "normal":
-//             // returnedColor=""
-//     }
-// }
-
 $("#room").on("change", async function (e) {
     let filmId = $("input[name='film_id'").val();
 
@@ -18,7 +11,7 @@ $("#room").on("change", async function (e) {
             selectScreening.empty();
             data.forEach((screening) => {
                 let element = `<div class=" flex gap-3">
-                    <input name="screening_id" type="radio" class="screening accent-orange-700" value="${screening.id}" id="screening" />
+                    <input name="screening_id" type="radio" class="screening" value="${screening.id}" id="screening" />
                     <label for="${screening.id}-screening">${screening.start_time}&nbsp&nbsp${screening.end_time}</label>
                 </div>`;
                 selectScreening.append(element);
@@ -51,7 +44,6 @@ $("#room").on("change", async function (e) {
             url: `/seats/${e.target.value}/search`,
             success: function (data) {
                 let roomSeat = data;
-                console.log(e.target.value , event.target.value)
 
                 $.ajax({
                     type: "GET",
@@ -61,7 +53,6 @@ $("#room").on("change", async function (e) {
                         selectSeat.empty();
 
                         let selectedSeat = data
-                        console.log(selectedSeat)
                         roomSeat.forEach((seat) => {
                             let disabled="";
                             selectedSeat.map( item => {
