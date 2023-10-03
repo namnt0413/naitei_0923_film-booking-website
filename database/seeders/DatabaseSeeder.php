@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             SeatSeeder::class,
             ScreeningSeeder::class,
             TicketSeeder::class,
+            ReviewSeeder::class,
         ]);
     }
 }

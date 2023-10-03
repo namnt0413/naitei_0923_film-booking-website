@@ -56,3 +56,30 @@
 #carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
     color: #000;
 }
+
+/* rating star */
+.star-rating input {
+    display: none;
+}
+
+.star-rating {
+    margin: 30px auto;
+    display: table;
+    width: 350px;
+}
+
+.star-rating label {
+    padding: 10px;
+    float: right;
+    font-size: 44px;
+    color: #eee;
+}
+
+.star-rating input:not(:checked) ~ label:hover,
+.star-rating input:not(:checked) ~ label:hover ~ label {
+    color: #ffc107;
+}
+
+.star-rating input:checked ~ label {
+    color: #ffc107;
+}
