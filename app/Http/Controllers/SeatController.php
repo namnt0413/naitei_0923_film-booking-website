@@ -6,12 +6,18 @@ use App\Http\Requests\Seat\CreateRequest;
 use App\Http\Requests\Seat\UpdateRequest;
 use App\Models\Room;
 use App\Models\Seat;
-use App\Models\Ticket;
-use Illuminate\Support\Facades\DB;
+use App\Repositories\SeatRepositoryInterface;
 use Illuminate\Support\Facades\Request;
 
 class SeatController extends Controller
 {
+    private $repository;
+
+    public function __construct(SeatRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +25,7 @@ class SeatController extends Controller
      */
     public function index()
     {
-        $seats = Seat::with('room:id,name')->orderBy('room_id')->paginate(config('app.items_per_page'));
+        $seats = $this->repository->getAll();
 
         return view('seats.index', compact('seats'));
     }
@@ -46,13 +52,13 @@ class SeatController extends Controller
     {
         $validated = $request->validated();
 
-        if (checkExistSeatName('seats', $validated['room_id'], $validated['name'])) {
-            return redirect()->back()->with('error', trans('Existed Number Seat'));
+        $response = $this->repository->insert($validated);
+
+        if (isset($response['error'])) {
+            return redirect()->route('seats.index')->with('error', $response['error']);
         }
 
-        Seat::create($validated);
-
-        return redirect()->route('seats.index')->with('success', trans('Successfully created'));
+        return redirect()->route('seats.index')->with('success', $response['success']);
     }
 
     /**
@@ -87,11 +93,10 @@ class SeatController extends Controller
     public function update(UpdateRequest $request, Seat $seat)
     {
         $validated = $request->validated();
-        $seat->price_ratio = $validated['price_ratio'];
-        $seat->type = $validated['type'];
-        $seat->save();
 
-        return redirect()->route('seats.index')->with('success', trans('Successfully updated'));
+        $response = $this->repository->update($seat, $validated);
+
+        return redirect()->route('seats.index')->with('success', $response['success']);
     }
 
     /**
@@ -102,25 +107,15 @@ class SeatController extends Controller
      */
     public function destroy(Seat $seat)
     {
-        DB::transaction(function () use ($seat) {
-            $seat->tickets()->delete();
-            $seat->delete();
-        }, config('app.transaction_request'));
+        $response = $this->repository->delete($seat);
 
-        return redirect()->route('rooms.index')->with('success', trans('Successfully deleted'));
+        return redirect()->route('rooms.index')->with('success', $response['success']);
     }
 
     public function searchByRoom(Request $request, Room $room)
     {
-        $seatIds = $room->seats()->pluck('id')->all();
-        $screeningIds = $room->screenings()->pluck('id')->all();
-        $cannotBookingSeatIds = Ticket::whereIn('seat_id', $seatIds)
-            ->whereIn('screening_id', $screeningIds)
-            ->pluck('seat_id')
-            ->all();
-        $seats = Seat::where('room_id', $room->id)
-            ->whereNotIn('id', $cannotBookingSeatIds)
-            ->get();
+        $seats = $this->repository->searchByRoom($room);
+
         return response()->json($seats);
     }
 }

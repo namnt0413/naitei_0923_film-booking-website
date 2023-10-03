@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use App\Http\Requests\RegisterFormRequestValidation;
+use App\Models\Role;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +42,7 @@ class RegisteredUserController extends Controller
         $user->first_name = $validated['first_name'];
         $user->last_name = $validated['last_name'];
         $user->is_active = true;
-        $user->role_id = 1;
+        $user->role_id = Role::where('name', 'user')->first()->id;
         $user->email = $validated['email'];
         $user->password = Hash::make($validated['password']);
 
