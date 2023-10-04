@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Seat\CreateRequest;
 use App\Http\Requests\Seat\UpdateRequest;
 use App\Models\Room;
+use App\Models\Screening;
 use App\Models\Seat;
+use App\Models\Ticket;
 use App\Repositories\SeatRepositoryInterface;
 use Illuminate\Support\Facades\Request;
 
@@ -17,7 +19,7 @@ class SeatController extends Controller
     {
         $this->repository = $repository;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -116,6 +118,19 @@ class SeatController extends Controller
     {
         $seats = $this->repository->searchByRoom($room);
 
+        return response()->json($seats);
+    }
+
+    public function searchByRoomScreening(Request $request, Room $room, Screening $screening)
+    {
+        $seatIds = $room->seats()->pluck('id')->all();
+        $cannotBookingSeatIds = Ticket::whereIn('seat_id', $seatIds)
+            ->where('screening_id', $screening->id)
+            ->pluck('seat_id')
+            ->all();
+        $seats = Seat::where('room_id', $room->id)
+            ->whereIn('id', $cannotBookingSeatIds)
+            ->get();
         return response()->json($seats);
     }
 }
