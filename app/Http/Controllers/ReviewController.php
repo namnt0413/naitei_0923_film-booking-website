@@ -10,6 +10,21 @@ use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
+    public function index()
+    {
+        $reviews = Review::with(['user', 'film'])
+            ->orderBy('film_id', 'desc')
+            ->orderBy('user_id', 'desc')
+            ->paginate(config('app.items_per_page'));
+
+        return view('reviews.index', compact('reviews'));
+    }
+
+    public function show(Review $review)
+    {
+        return view('reviews.show', compact('review'));
+    }
+    
     public function store(CreateRequest $request)
     {
         $validated = $request->validated();

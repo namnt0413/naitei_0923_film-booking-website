@@ -56,6 +56,7 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('films', FilmController::class);
     Route::resource('tickets', TicketController::class)->except(['store', 'destroy']);
     Route::resource('users', UserController::class)->only(['index', 'show', 'update']);
+    Route::resource('/reviews', ReviewController::class)->only(['index', 'show']);
 });
 
 Route::get('/seats/{room}/search', [SeatController::class, 'searchByRoom']);
