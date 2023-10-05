@@ -118,4 +118,11 @@ class RoomController extends Controller
 
         return redirect()->route('rooms.index')->with('success', trans('Successfully deleted'));
     }
+
+    public function detail(int $room)
+    {
+        return response()->json(
+            Room::where('id', $room)->get()
+        );
+    }
 }

@@ -131,6 +131,7 @@ class ScreeningController extends Controller
             Screening::where('room_id', $room)
             ->where('film_id', $film)
             ->where('remain', '>', 0)
+            ->whereRaw('start_time >= NOW()')
             ->get()
         );
     }

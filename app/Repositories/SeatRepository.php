@@ -51,15 +51,7 @@ class SeatRepository implements SeatRepositoryInterface
 
     public function searchByRoom($room)
     {
-        $seatIds = $room->seats()->pluck('id')->all();
-        $screeningIds = $room->screenings()->pluck('id')->all();
-        $cannotBookingSeatIds = Ticket::whereIn('seat_id', $seatIds)
-            ->whereIn('screening_id', $screeningIds)
-            ->pluck('seat_id')
-            ->all();
-        $seats = Seat::where('room_id', $room->id)
-            ->whereNotIn('id', $cannotBookingSeatIds)
-            ->get();
+        $seats = Seat::where('room_id', $room->id)->orderBy('type')->get();
 
         return $seats;
     }

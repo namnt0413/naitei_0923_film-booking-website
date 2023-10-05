@@ -83,3 +83,30 @@
 .star-rating input:checked ~ label {
     color: #ffc107;
 }
+
+[type=checkbox].normal:checked {
+    background-color: #722ED1;
+}
+[type=checkbox].couple:checked {
+    background-color: #EA419E;
+}
+[type=checkbox].vip:checked {
+    background-color: #F5222D;
+}
+[type=checkbox].disabled:checked {
+    background-color: #999999;
+    background-image: none;
+}
+
+label.normal {
+    color: #722ED1;
+}
+label.couple {
+    color: #EA419E;
+}
+label.vip {
+    color: #F5222D;
+}
+label.disabled {
+    color: #999999;
+}

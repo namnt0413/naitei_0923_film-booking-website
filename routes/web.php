@@ -46,6 +46,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
     Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+
+    Route::get('/rooms/{room}', [RoomController::class, 'detail'])->name('rooms.detail');
 });
 
 Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
@@ -60,6 +62,8 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::get('/seats/{room}/search', [SeatController::class, 'searchByRoom']);
+Route::get('/seats/{room}/{screening}/search', [SeatController::class, 'searchByRoomScreening']);
+
 Route::get('/screenings/{room}/{film}/search', [ScreeningController::class, 'searchByRoom']);
 Route::get('/screenings/date/{date}', [ScreeningController::class, 'searchScreeningByDate']);
 
